@@ -1,19 +1,17 @@
 import { useState } from "react";
 import s from "./Todo.module.css";
+import NewTodoForm from "./newTodoForm/NewTodoForm";
 
 const Todo = () => {
-  const [newItem, setNewItem] = useState("");
   const [todos, setTodos] = useState([]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const addTodo = (title) => {
     setTodos((currentTodos) => {
       return [
         ...currentTodos,
-        { id: crypto.randomUUID(), title: newItem, completed: false },
+        { id: crypto.randomUUID(), title, completed: false },
       ];
     });
-    setNewItem("");
   };
 
   const toggleTodo = (id, completed) => {
@@ -34,21 +32,8 @@ const Todo = () => {
   };
 
   return (
-    <div className={s.todo}>
-      <form onSubmit={handleSubmit} className={s.form} action="">
-        <label htmlFor="item">New Todo</label>
-        <input
-          onChange={(e) => setNewItem(e.target.value)}
-          value={newItem}
-          type="text"
-          id="item"
-          autoFocus
-          placeholder="Enter todo here"
-        />
-        <button className={s.submitBtn} type="submit">
-          Add
-        </button>
-      </form>
+    <>
+      <NewTodoForm addTodo={addTodo} />
       <h2 className={s.header}>Todo List</h2>
       <ul className={s.list}>
         {todos.length === 0 && "Todos are displayed here"}
@@ -72,7 +57,7 @@ const Todo = () => {
           );
         })}
       </ul>
-    </div>
+    </>
   );
 };
 
