@@ -1,6 +1,7 @@
 import { useState } from "react";
 import s from "./Todo.module.css";
 import NewTodoForm from "./newTodoForm/NewTodoForm";
+import TodoList from "./todoList/TodoList";
 
 const Todo = () => {
   const [todos, setTodos] = useState([]);
@@ -33,30 +34,15 @@ const Todo = () => {
 
   return (
     <>
-      <NewTodoForm addTodo={addTodo} />
-      <h2 className={s.header}>Todo List</h2>
-      <ul className={s.list}>
-        {todos.length === 0 && "Todos are displayed here"}
-        {todos.map((item) => {
-          return (
-            <li key={item.id} className={s.listItem}>
-              <input
-                className={s.checkbox}
-                type="checkbox"
-                checked={item.completed}
-                onChange={(e) => toggleTodo(item.id, e.target.checked)}
-              />
-              {item.title}
-              <button
-                onClick={() => deleteTodo(item.id)}
-                className={s.deleteBtn}
-              >
-                Delete
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+      <div className={s.todo}>
+        <NewTodoForm addTodo={addTodo} />
+        <h2 className={s.header}>Todo List</h2>
+        <TodoList
+          todos={todos}
+          deleteTodo={deleteTodo}
+          toggleTodo={toggleTodo}
+        />
+      </div>
     </>
   );
 };

@@ -1,25 +1,9 @@
+.todo {
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 24px;
+}
 .header {
   margin: 24px 0 12px 0;
 }
 
-.listItem {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.checkbox {
-  width: 24px;
-  height: 24px;
-}
-ul {
-  list-style: none;
-}
-
-.deleteBtn {
-  color: red;
-  border: 1px solid red;
-  border-radius: 4px;
-  padding: 8px 16px;
-  background-color: transparent;
-}
